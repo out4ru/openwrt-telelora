@@ -1,0 +1,12 @@
+diff -urN b/packet_forwarder/src/lora_pkt_fwd.c a/packet_forwarder/src/lora_pkt_fwd.c
+--- b/packet_forwarder/src/lora_pkt_fwd.c	2021-04-22 15:34:46.000000000 +0300
++++ a/packet_forwarder/src/lora_pkt_fwd.c	2022-02-11 21:07:14.337612328 +0200
+@@ -97,7 +97,7 @@
+ #define PKT_PULL_ACK    4
+ #define PKT_TX_ACK      5
+ 
+-#define NB_PKT_MAX      255 /* max number of packets per fetch/send cycle */
++#define NB_PKT_MAX      128 /* max number of packets per fetch/send cycle */
+ 
+ #define MIN_LORA_PREAMB 6 /* minimum Lora preamble length for this application */
+ #define STD_LORA_PREAMB 8

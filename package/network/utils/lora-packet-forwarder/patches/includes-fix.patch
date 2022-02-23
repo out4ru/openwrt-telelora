@@ -1,0 +1,11 @@
+--- sx1302_hal-2.1.0/Makefile-origin	2022-01-31 18:27:30.574081625 +0200
++++ sx1302_hal-2.1.0/Makefile	2022-01-31 18:24:29.631448291 +0200
+@@ -10,6 +10,8 @@
+ 
+ all: libtools libloragw packet_forwarder util_net_downlink util_chip_id util_boot util_spectral_scan
+ 
++CFLAGS+=-Iinc -I../libtools/inc
++
+ libtools:
+ 	$(MAKE) all -e -C $@
+ 

@@ -1,0 +1,16 @@
+diff -urN b/arch/arm/boot/dts/Makefile a/arch/arm/boot/dts/Makefile
+--- b/arch/arm/boot/dts/Makefile	2022-01-16 10:14:24.000000000 +0200
++++ a/arch/arm/boot/dts/Makefile	2022-01-27 17:45:07.578443697 +0200
+@@ -609,6 +609,12 @@
+ 	imx6sx-udoo-neo-extended.dtb \
+ 	imx6sx-udoo-neo-full.dtb
+ dtb-$(CONFIG_SOC_IMX6UL) += \
++	imx6ull-o4-nano-telelora-v2.dtb \
++	imx6ull-o4-nano-tempest.dtb \
++	imx6ull-ev-nano-tira.dtb \
++	imx6ull-ev-m2-simple.dtb \
++	imx6ull-ev-m2-twin.dtb \
++	imx6ull-o4-sodimm-tron.dtb \
+ 	imx6ul-14x14-evk.dtb \
+ 	imx6ul-ccimx6ulsbcexpress.dtb \
+ 	imx6ul-ccimx6ulsbcpro.dtb \

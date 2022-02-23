@@ -1,0 +1,66 @@
+#/bin/sh
+
+SIM5300powerkey=10
+SIM5300reset=26
+SIM5300pwr=504
+SIMselect=82
+
+
+set_gpio(){
+ if [ ! -e /sys/class/gpio/gpio$1 ]; then
+    echo "$1" > /sys/class/gpio/export
+    echo "out" > /sys/class/gpio/gpio$1/direction
+  fi
+  echo "$2" > /sys/class/gpio/gpio$1/value
+}
+
+
+
+case "$1" in
+  on)
+        logger "modem on"
+        set_gpio $SIM5300pwr 1
+        sleep 2
+        set_gpio $SIM5300reset 1
+        set_gpio $SIM5300powerkey 0
+        sleep 1
+        set_gpio $SIM5300powerkey 1
+        ;;
+  off)
+        logger "modem off"
+        set_gpio $SIM5300reset 1
+        set_gpio $SIM5300powerkey 0
+        sleep 2
+        set_gpio $SIM5300powerkey 1
+        sleep 1
+        set_gpio $SIM5300pwr 0
+        ;;
+  restart)
+        logger "modem restart"
+        "$0" off
+        sleep 2
+        "$0" on
+        ;;
+  reset)
+        logger "modem reset"
+        set_gpio $SIM5300reset 0
+        sleep 1
+        set_gpio $SIM5300reset 1
+        ;;
+  sim1)
+        logger "modem set SIM1 "
+        set_gpio $SIMselect 0
+        "$0" restart
+        ;;
+  sim2)
+        logger "modem set SIM2 "
+        set_gpio $SIMselect 1
+        "$0" restart
+        ;;
+  *)
+        echo "Usage: $0 {on|off|reset|sim1|sim2}"
+        exit 1
+esac
+
+exit $?
+
